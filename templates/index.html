@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        .main_table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .name_column {
+            width: 160px;
+        }
+        .role_column {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div><h1>ITSC 3155 Project: Web Messaging Platform</h1></div>
+    <p>This page was initally written by {{ author  }} because he
+    was bored and wanted to learn how Flask works.</p>
+    <br>
+    <div>
+        <table class="main_table">
+            <tr>
+                <th class="name_column">Name</th>
+                <th class="role_column">Role</th>
+            </tr>
+            <tr>
+                <td>Owen Sizemore</td>
+                <td>Team Leader</td>
+            </tr>
+            <tr>
+                <td>Anh Nguyen</td>
+                <td>IT Specialist</td>
+            </tr>
+            <tr>
+                <td>Sumukh Badari</td>
+                <td>UI Design</td>
+            </tr>
+            <tr>
+                <td>Christian Madajski</td>
+                <td>Idiot Loser</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <form>
+            <label for="concerns">If you have any questions or concerns,
+                type them in the box below</label><br>
+            <input type="text" id="concerns" name="concerns" size="60">
+        </form>
+    </div>
+
+</body>
+</html>
