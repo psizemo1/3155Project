@@ -1,0 +1,35 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Q/A Webapp - Main Feed">
+        <title>Q/A Webapp - Main Feed</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+	<body>
+		<h1>Q/A Web App</h1>
+		<hr>
+		<p><a href="{{ url_for('main') }}">Home</a>
+		<a href="{{ url_for('about') }}">About</a></p>
+		<hr>
+		<h2>Recent Posts (**PLACEHOLDER FEED**):</h2>
+		<table>
+			<tr>
+				<th>Author</th>
+				<th>Question</th>
+				<th>Answers</th>
+			</tr>
+			<tr>
+				<td>Bethany Lewis</td>
+				<td>What was the homework for ITSC 3155 on Tueday?</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>Elon Musk</td>
+				<td>Why is life filled with suffering? I just want to fly rockets all day.</td>
+				<td>9001</td>
+			</tr>
+		</table>
+	</body>
+</html>
