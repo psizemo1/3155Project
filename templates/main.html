@@ -3,17 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Q/A Webapp - Main Feed">
-        <title>Q/A Webapp - Main Feed</title>
+        <meta name="description" content="Q/A App - Main Feed">
+        <title>Q/A App - Main Feed</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
 	<body>
-		<h1>Q/A Web App</h1>
-		<hr>
+		<h1>Question/Answer App - Main Feed</h1>
 		<p><a href="{{ url_for('main') }}">Home</a>
 		<a href="{{ url_for('about') }}">About</a></p>
 		<hr>
-		<h2>Recent Posts (**PLACEHOLDER FEED**):</h2>
+		<h2>Recent Posts:</h2>
 		<table>
 			<tr>
 				<th>Author</th>
@@ -30,6 +29,13 @@
 				<td>Why is life filled with suffering? I just want to fly rockets all day.</td>
 				<td>9001</td>
 			</tr>
+			<tr>
+				<td>Cookie Monster</td>
+				<td>Anyone have good recommendations for cookie rehab? Really need to kick the habit...</td>
+				<td>-7</td>
+			</tr>
 		</table>
+		<p><a href="{{ url_for('newPost') }}">Ask a New Question</a></p>
 	</body>
 </html>
+</DOCTYPE>

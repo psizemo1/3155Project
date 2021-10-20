@@ -1,10 +1,13 @@
 table {
-	border-collapse: collapse;
+    border: 1px solid black;
+    border-collapse: collapse;
 	width: 100%;
 }
 th, td {
 	text-align: left;
+	border: 1px solid black;
 }
-td:hover {
-	background-color: light-grey;
+tr:hover {
+	background-color: #DCDCDC;
 }
+

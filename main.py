@@ -15,3 +15,7 @@ def user():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/newpost')
+def newPost():
+    return render_template('newpost.html')
