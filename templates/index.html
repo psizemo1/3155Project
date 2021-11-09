@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="background-color: #F5F5F5;">
+    <head>
+        <title>Q&A Application - Home</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    </head>
+    <body>
+      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="logo-white.png" width="28" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              My Groups
+            </a>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>My Account</strong>
+                </a>
+                <a class="button is-white">
+                  Log Out
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container is-max-desktop">
+        <div class="content">
+            <h1 class="title is-2 is-spaced mt-5">Welcome, [User name]!</h1>
+            <p class="subtitle is-4">Latest Posts</p>
+
+            <div class="card">
+              <div class="card-content">
+                <div class="content">
+                  <p class="title is-4">Post Title</p>
+                  <p class="subtitle is-6">Post Author</p>
+                  <p>
+                    This is the text for a post that you are the author of. There are options below for sharing, editing and deleting the post.
+                  </p>
+                  <p>
+                    <span class="tag is-primary is-light">#softwareengineering</span>
+                    <span class="tag is-primary is-light">#itsc3155</span>
+                    <span class="tag is-primary is-light">#java</span>
+                  </p>
+                  <p><small class="is-italic">November 9, 2021 at 9:15am</small></p>
+                  <div class="buttons">
+                    <button class="button is-small is-success is-outlined"><i class="fas fa-hand-point-up"></i></button>
+                    <button class="button is-small is-danger is-outlined"><i class="fas fa-hand-point-down"></i></button>
+                  </div>
+                  <p><strong>1 comment</strong></p>
+                  <p><small class="mr-3">This is a great post! Thanks for the informative information.</small><small class="is-italic">-- John Doe, 11/9/2021 9:25am</small></p>
+                  <div class="field has-addons">
+                    <div class="control is-expanded">
+                      <input class="input" type="text" placeholder="Add a comment...">
+                    </div>
+                    <div class="control">
+                      <a class="button is-info">
+                        Submit
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item">Share</a>
+                <a href="#" class="card-footer-item">Edit</a>
+                <a href="#" class="card-footer-item">Delete</a>
+              </footer>
+            </div>
+        </div>
+      </div>
+      <script src="https://kit.fontawesome.com/78e1b96a9f.js" crossorigin="anonymous"></script>
+    </body>
+</html>
