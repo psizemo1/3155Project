@@ -8,6 +8,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     phone = db.Column(db.String(10))
     password = db.Column(db.String(100))
+    created_at = db.Column(db.DateTime, default=db.func.now())
 
 
 class Group(db.Model):
@@ -16,6 +17,11 @@ class Group(db.Model):
     description = db.Column(db.String(1000))
     users = db.relationship('User', secondary='group_user', backref='groups')
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return f'<Group {self.name}>'
 
 class GroupUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,6 +37,8 @@ class Post(db.Model):
     user = db.relationship('User', backref=db.backref('posts', lazy=True))
     group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
     group = db.relationship('Group', backref=db.backref('posts', lazy=True))
+    created_at = db.Column(db.DateTime, default=db.func.now())
+    updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
 
     @classmethod
     def search(cls, search_term):

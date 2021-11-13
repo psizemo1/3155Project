@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include 'components/messages.html' %}
+    <div class="column is-8 is-offset-2">
+        <div class="has-text-justified">
+            <p>{{ post.group.name }} - {{ post.created_at.strftime("%b %d, %Y") }}</p>
+        </div>
+        <div class="box">
+            <article class="media">
+                <figure class="media-left">
+                    <p class="image is-128x128">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="User image">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p class="title is-4">{{ post.title }}</p>
+                        <p class="subtitle is-6">by {{ post.user.username }}</p>
+                        <p class="has-text-justified">
+                            {{ post.content }}
+                        </p>
+                        {% if current_user == post.user %}
+                            <a href="{{ url_for('main.post_edit', post_id=post.id) }}" class="button is-primary">Edit</a>
+                            <a href="{{ url_for('main.post_delete', post_id=post.id) }}" class="button is-danger">Delete</a>
+                        {% endif %}
+                    </div>
+                    <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a class="level-item">
+                                <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                            </a>
+                            <a class="level-item">
+                                <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                            </a>
+                            <a class="level-item">
+                                <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                </a>
+            </article>
+        </div>
+    </div>
+{% endblock %}
