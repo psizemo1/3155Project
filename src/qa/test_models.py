@@ -8,7 +8,6 @@ from .models import User, Group, Post, GroupUser
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
-
 app = create_app()
 app.config.from_object(__name__)
 app.app_context().push()
@@ -32,6 +31,7 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         db.drop_all(app=app)
 
+
 class TestGroup(unittest.TestCase):
     def setUp(self):
         self.engine = db.get_engine(app=app)
@@ -47,6 +47,7 @@ class TestGroup(unittest.TestCase):
 
     def tearDown(self):
         db.drop_all(app=app)
+
 
 class TestGroupUser(unittest.TestCase):
     def setUp(self):
@@ -66,6 +67,7 @@ class TestGroupUser(unittest.TestCase):
 
     def tearDown(self):
         db.drop_all(app=app)
+
 
 class TestPost(unittest.TestCase):
     def setUp(self):
@@ -96,7 +98,6 @@ class TestPost(unittest.TestCase):
         self.assertListEqual([p.id for p in Post.search('world')], [post1.id])
         self.assertListEqual([p.id for p in Post.search('fine')], [post3.id])
         self.assertListEqual([p.id for p in Post.search('HI')], [post2.id, post3.id])
-
 
     def tearDown(self):
         db.drop_all(app=app)
