@@ -4,7 +4,7 @@
     {% include 'components/messages.html' %}
     <h1 class="title">
         {% if current_user.is_authenticated %}
-              Hi, {{ current_user.username }}
+              Hi, {{ current_user.name }}
         {% else %}
               Hi, please register or sign in
         {% endif %}

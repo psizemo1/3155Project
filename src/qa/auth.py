@@ -36,7 +36,7 @@ def login_post():
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     email = request.form.get('email')
-    username = request.form.get('username')
+    name = request.form.get('name')
     password = request.form.get('password')
     phone = request.form.get('phone')
 
@@ -48,7 +48,7 @@ def signup_post():
     if not valid:
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, username=username, phone=phone,
+    new_user = User(email=email, name=name, phone=phone,
                     password=generate_password_hash(password, method='sha256'))
 
     db.session.add(new_user)

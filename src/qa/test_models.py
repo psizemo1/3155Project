@@ -20,12 +20,12 @@ class TestUser(unittest.TestCase):
         db.create_all(app=app)
 
     def test_create(self):
-        user = User(email='email', username='username', phone='phone',
+        user = User(email='email', name='name', phone='phone',
                     password=generate_password_hash('password', method='sha256'))
         self.session.add(user)
         self.session.commit()
         self.assertEqual(user.email, 'email')
-        self.assertEqual(user.username, 'username')
+        self.assertEqual(user.name, 'name')
         self.assertEqual(user.phone, 'phone')
 
     def tearDown(self):
@@ -54,7 +54,7 @@ class TestGroupUser(unittest.TestCase):
         self.engine = db.get_engine(app=app)
         self.session = Session(self.engine)
         db.create_all(app=app)
-        self.session.add(User(email='email', username='username', phone='phone'))
+        self.session.add(User(email='email', name='name', phone='phone'))
         self.session.add(Group(name='name', description='description'))
         self.session.commit()
 
@@ -74,7 +74,7 @@ class TestPost(unittest.TestCase):
         self.engine = db.get_engine(app=app)
         self.session = Session(self.engine)
         db.create_all(app=app)
-        self.session.add(User(email='email', username='username', phone='phone'))
+        self.session.add(User(email='email', name='name', phone='phone'))
         self.session.add(Group(name='name', description='description'))
         self.session.commit()
 

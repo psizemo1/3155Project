@@ -1,0 +1,33 @@
+<div class="column is-8 is-offset-2">
+    {% if not post.parent %}
+        <div class="has-text-justified">
+            <p>{{ post.group.name }} - {{ post.created_at.strftime("%b %d, %Y") }}</p>
+        </div>
+    {% endif %}
+    <div class="box">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-{% if post.parent %}64x64{% else %}128x128{% endif %}">
+                    <img src="https://bulma.io/images/placeholders/{% if post.parent %}64x64{% else %}128x128{% endif %}.png" alt="User image">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    {% if not post.parent %}
+                        <p class="title is-4">{{ post.title }}</p>
+                    {% endif %}
+                    <p class="subtitle is-6">{% if post.parent %}Reply {% endif %}by {{ post.user.name }}{% if post.parent %} on {{ post.created_at.strftime("%b %d, %Y") }}{% endif %}</p>
+                    <p class="has-text-justified">
+                        {% for line in post.content.splitlines() %}
+                            {{ line }}<br>
+                        {% endfor %}
+                    </p>
+                    {% if current_user == post.user %}
+                        <a href="{{ url_for('main.post_edit', post_id=post.id) }}" class="button is-primary">Edit</a>
+                        <a href="{{ url_for('main.post_delete', post_id=post.id) }}" class="button is-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
