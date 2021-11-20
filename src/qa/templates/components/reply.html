@@ -1,0 +1,27 @@
+<div class="column is-8 is-offset-2">
+    <div class="box">
+        {% if current_user.is_authenticated %}
+            <form action="{{ url_for('main.reply', post_id=post.id) }}" method="post">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="field">
+                            <p class="control">
+                                <textarea class="textarea" placeholder="Add a reply..." name="content"></textarea>
+                            </p>
+                        </div>
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <button class="button is-primary">Reply</button>
+                            </p>
+                        </div>
+                    </div>
+
+                </article>
+            </form>
+        {% else %}
+            <p>
+                <a href="{{ url_for('auth.login') }}">Login</a> to add comments!
+            </p>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{% if current_user.is_authenticated %}
+    <form action="{{ url_for('main.posts') }}" method="post">
+        <div class="field">
+            <label class="label" for="title">Title</label>
+            <div class="control">
+                <input class="input" id="title" type="text" name="title" placeholder="Title" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Group</label>
+            <div class="control">
+                <div class="select">
+                    <select name="group_id">
+                        {% for group in user_groups %}
+                            <option value="{{ group.id }}">{{ group.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="content">Content</label>
+            <div class="control">
+        <textarea class="textarea" id="content" name="content" placeholder="Content"
+                  required></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link">Submit</button>
+            </div>
+        </div>
+    </form>
+{% else %}
+    <p>You need to be <a href="{{ url_for('auth.login') }}">logged in</a> to create a post.</p>
+    <br/>
+{% endif %}
