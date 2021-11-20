@@ -4,40 +4,13 @@
         <h3 class="title">Posts</h3>
         <div class="box">
             {% include 'components/messages.html' %}
-            {% if current_user.is_authenticated %}
-                <form action="{{ url_for('main.posts') }}" method="post">
-                <div class="field">
-                    <label class="label" for="title">Title</label>
-                    <div class="control">
-                        <input class="input" id="title" type="text" name="title" placeholder="Title" required>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Group</label>
-                    <div class="control">
-                        <div class="select">
-                            <select name="group_id">
-                                {% for group in user_groups %}
-                                    <option value="{{ group.id }}">{{ group.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label" for="content">Content</label>
-                    <div class="control">
-                        <textarea class="textarea" id="content" name="content" placeholder="Content"
-                                  required></textarea>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-link">Submit</button>
-                    </div>
-                </div>
+            {% include 'components/search_bar.html' %}
+            {% if request.args.get('q') %}
+                <p>Search results for '{{ request.args.get('q') }}'</p>
+            {% else %}
+                {% include 'components/post_create.html' %}
             {% endif %}
+            <br/>
             {% for post in posts %}
                 {# Use Bulmba CSS #}
                 <article class="media">
@@ -51,7 +24,7 @@
                             <div class="content">
                                 <p class="has-text-justified">
                                     <strong>"{{ post.title }}"</strong> by
-                                    <strong>{{ post.user.username }}</strong> in
+                                    <strong>{{ post.user.name }}</strong> in
                                     <strong>{{ post.group.name }}</strong> at
                                     <strong>{{ post.created_at.strftime("%b %d, %Y") }}</strong>
                                 </p>

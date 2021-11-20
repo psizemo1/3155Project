@@ -12,33 +12,12 @@ def index():
     return render_template('index.html')
 
 
-"""
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(1000))
-    email = db.Column(db.String(100), unique=True)
-    phone = db.Column(db.String(10))
-    password = db.Column(db.String(100))
-    created_at = db.Column(db.DateTime, default=db.func.now())
-
-
-class Group(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(1000))
-    description = db.Column(db.String(1000))
-    users = db.relationship('User', secondary='group_user', backref='groups')
-
-
-class GroupUser(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-"""
-
-
 @main.route('/posts', methods=['GET', 'POST'])
 def posts():
-    user_groups = Group.query.filter(Group.users.any(id=current_user.id)).all()
+    if current_user.is_anonymous:
+        user_groups = []
+    else:
+        user_groups = Group.query.filter(Group.users.any(id=current_user.id)).all()
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
@@ -56,11 +35,15 @@ def posts():
         db.session.commit()
         return redirect(url_for('main.post', post_id=post.id))
     # Get posts in descending order
-    posts = sorted(Post.query.all(), key=lambda p: p.created_at, reverse=True)
+    search_query = request.args.get('q')
+    if search_query:
+        posts = Post.search(search_query)
+    else:
+        posts = sorted(Post.query.filter(Post.parent == None).all(), key=lambda p: p.created_at, reverse=True)
     return render_template('posts.html', posts=posts, user_groups=user_groups)
 
 
-@main.route('/post_edit/<post_id>', methods=['GET', 'POST'])
+@main.route('/posts/<post_id>/edit', methods=['GET', 'POST'])
 def post_edit(post_id):
     post = Post.query.get(post_id)
     if post is None:
@@ -68,7 +51,7 @@ def post_edit(post_id):
     if post.user != current_user:
         return render_template('403.html'), 403
     if request.method == 'POST':
-        title = request.form['title']
+        title = '' if post.parent else request.form['title']
         content = request.form['content']
         post.title = title
         post.content = content
@@ -78,7 +61,7 @@ def post_edit(post_id):
     return render_template('post_edit.html', post=post)
 
 
-@main.route('/post_delete/<post_id>', methods=['GET', 'POST'])
+@main.route('/posts/<post_id>/delete', methods=['GET', 'POST'])
 def post_delete(post_id):
     post = Post.query.get(post_id)
     if post is None:
@@ -98,3 +81,19 @@ def post(post_id):
     if post is None:
         return render_template('404.html'), 404
     return render_template('post.html', post=post)
+
+
+@main.route('/posts/<post_id>/reply', methods=['GET', 'POST'])
+def reply(post_id):
+    if current_user.is_anonymous:
+        return render_template('403.html'), 403
+    post = Post.query.get(post_id)
+    if post is None:
+        return render_template('404.html'), 404
+    if request.method == 'POST':
+        content = request.form['content']
+        child = Post(title="", content=content, group=post.group, user=current_user, parent=post)
+        db.session.add(child)
+        db.session.commit()
+        return redirect(url_for('main.post', post_id=post.id))
+    return redirect(url_for('main.post', post_id=post.id))

@@ -1,0 +1,16 @@
+<form action="{{ url_for('main.posts') }}" method="GET">
+
+    <div class="field has-addons">
+        <div class="control is-expanded">
+            <input class="input" type="text" name="q" placeholder="Search"
+                   value="{{ request.args.get('q', '') }}">
+        </div>
+        <div class="control">
+            <button class="button is-info">
+                <span class="icon">
+                    🔎
+                </span>
+            </button>
+        </div>
+    </div>
+</form>

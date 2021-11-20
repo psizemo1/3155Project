@@ -15,7 +15,7 @@
                 <div class="media-content">
                     <form action="{{ url_for('main.post_delete', post_id=post.id) }}" method="POST">
                         <div class="content">
-                            <p>Are you sure you want to delete "{{ post.title }}"?</p>
+                            <p>Are you sure you want to delete {{ post }}?</p>
                         </div>
                         <div class="field">
                             <div class="control">
