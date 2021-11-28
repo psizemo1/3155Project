@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 
 from . import db
-from .models import Post, Group
+from .models import Post, Group, Image
 
 main = Blueprint('main', __name__)
 
@@ -22,6 +22,7 @@ def posts():
         title = request.form['title']
         content = request.form['content']
         group_id = request.form['group_id']
+        image = request.files['image']
         # Verify that the user is in the group
         group = None
         for g in user_groups:
@@ -31,6 +32,9 @@ def posts():
         if group is None:
             return render_template('403.html'), 403
         post = Post(title=title, content=content, user=current_user, group=group)
+        if image:
+            image_file = Image(image=image.read(), post=post)
+            db.session.add(image_file)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.post', post_id=post.id))
@@ -55,6 +59,12 @@ def post_edit(post_id):
         content = request.form['content']
         post.title = title
         post.content = content
+        image = request.files['image']
+        if image:
+            for old_image in post.images:
+                db.session.delete(old_image)
+            image_file = Image(image=image.read(), post=post)
+            db.session.add(image_file)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.post', post_id=post.id))
@@ -97,3 +107,12 @@ def reply(post_id):
         db.session.commit()
         return redirect(url_for('main.post', post_id=post.id))
     return redirect(url_for('main.post', post_id=post.id))
+
+
+@main.route('/images/<image_id>.jpg')
+def image(image_id):
+    image = Image.query.get(image_id)
+    if image is None:
+        return render_template('404.html'), 404
+    # Set content type to image/jpeg
+    return image.image, 200, {'Content-Type': 'image/jpeg'}
