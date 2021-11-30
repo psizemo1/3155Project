@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Q&A Forum</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    </head>
+    <body>
+        <section class="section is-medium">
+            <div class="container is-max-desktop">
+                <div class="box">
+                    <div class="block">
+                        <h1 class="title is-1 has-text-centered">Welcome, {{user.username}}!</h1>
+                    </div>
+                    <div class="block mx-6 mt-6">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field has-addons">
+                                    <div class="control is-expanded">
+                                        <input class="input is-large is-primary" type="text" placeholder="Search for Posts...">
+                                    </div>
+                                    <div class="control">
+                                        <a class="button is-primary is-large">
+                                            <span class="icon is-medium is-right">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <button class="button is-primary is-large is-fullwidth">Create New Post</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block mx-6 mt-6">
+                        <article class="panel is-primary">
+                            <p class="panel-heading">
+                                All Posts
+                            </p>
+                            <p class="panel-tabs">
+                                <a class="is-active">Sort by Newest</a>
+                                <a>Sort by Oldest</a>
+                                <a>Sort by Class</a>
+                                <a>Sort by Author</a>
+                            </p>
+                            <a class="panel-block">
+                                <span class="panel-icon">
+                                    <i class="fas fa-sticky-note"></i>
+                                </span>
+                                {{post.title}} by {{post.author}} in {{post.group}} at {{post.timestamp}}
+                            </a>
+                            <!-- Below: panel block for a user's original post -->
+                            <a class="panel-block is-active">
+                                <span class="panel-icon">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                {{post.title}} by {{post.author}} in {{post.group}} at {{post.timestamp}}
+                            </a>
+                            <a class="panel-block">
+                                <span class="panel-icon">
+                                    <i class="fas fa-sticky-note"></i>
+                                </span>
+                                {{post.title}} by {{post.author}} in {{post.group}} at {{post.timestamp}}
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://kit.fontawesome.com/78e1b96a9f.js" crossorigin="anonymous"></script>
+    </body>
+</html>
