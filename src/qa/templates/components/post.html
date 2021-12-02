@@ -22,6 +22,11 @@
                             {{ line }}<br>
                         {% endfor %}
                     </p>
+                {% for image in post.images %}
+                    <figure class="image">
+                        <img src="{{ url_for('main.image', image_id=image.id) }}" alt="User uploaded image">
+                    </figure>
+                {% endfor %}
                     {% if current_user == post.user %}
                         <a href="{{ url_for('main.post_edit', post_id=post.id) }}" class="button is-primary">Edit</a>
                         <a href="{{ url_for('main.post_delete', post_id=post.id) }}" class="button is-danger">Delete</a>

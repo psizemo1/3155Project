@@ -1,5 +1,5 @@
 {% if current_user.is_authenticated %}
-    <form action="{{ url_for('main.posts') }}" method="post">
+    <form action="{{ url_for('main.posts') }}" method="POST" enctype="multipart/form-data">
         <div class="field">
             <label class="label" for="title">Title</label>
             <div class="control">
@@ -18,7 +18,12 @@
                 </div>
             </div>
         </div>
-
+        <div class="field">
+            <label class="label" for="image">Upload Image</label>
+            <div class="control">
+                <input class="input" id="image" type="file" name="image" placeholder="Image" required>
+            </div>
+        </div>
         <div class="field">
             <label class="label" for="content">Content</label>
             <div class="control">

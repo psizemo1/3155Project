@@ -13,12 +13,18 @@
                     </p>
                 </figure>
                 <div class="media-content">
-                    <form action="{{ url_for('main.post_edit', post_id=post.id) }}" method="post">
+                    <form action="{{ url_for('main.post_edit', post_id=post.id) }}" method="post" enctype="multipart/form-data">
                         {% if not post.parent %}
                             <div class="field">
                                 <label class="label" for="title">Title</label>
                                 <div class="control">
                                     <input class="input" id="title" type="text" name="title" placeholder="Title" required value="{{ post.title }}">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="image">Upload Image</label>
+                                <div class="control">
+                                    <input class="input" id="image" type="file" name="image" placeholder="Image" required>
                                 </div>
                             </div>
                         {% endif %}

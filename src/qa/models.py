@@ -69,3 +69,18 @@ class Post(db.Model):
         while node.parent:
             node = node.parent
         return f'reply in {node}'
+
+
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.LargeBinary)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    post = db.relationship('Post', backref=db.backref('images', lazy=True, cascade='all, delete-orphan'))
+    created_at = db.Column(db.DateTime, default=db.func.now())
+    updated_at = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
+
+    def __str__(self):
+        return f'Image {self.id}'
+
+    def __repr__(self):
+        return f'<Image {self.id}>'
