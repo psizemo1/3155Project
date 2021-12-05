@@ -44,6 +44,13 @@ def posts():
         posts = Post.search(search_query)
     else:
         posts = sorted(Post.query.filter(Post.parent == None).all(), key=lambda p: p.created_at, reverse=True)
+    sort = request.args.get('sort')
+    if sort == 'votes':
+        posts = sorted(posts, key=lambda p: p.score(), reverse=True)
+    elif sort == 'newest':
+        posts = sorted(posts, key=lambda p: p.created_at, reverse=True)
+    elif sort == 'oldest':
+        posts = sorted(posts, key=lambda p: p.created_at, reverse=False)
     return render_template('posts.html', posts=posts, user_groups=user_groups)
 
 

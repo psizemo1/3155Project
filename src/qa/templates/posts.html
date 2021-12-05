@@ -4,12 +4,12 @@
         <h3 class="title">Posts</h3>
         <div class="box">
             {% include 'components/messages.html' %}
-            {% include 'components/search_bar.html' %}
             {% if request.args.get('q') %}
                 <p>Search results for '{{ request.args.get('q') }}'</p>
             {% else %}
                 {% include 'components/post_create.html' %}
             {% endif %}
+            <br/>{% include 'components/search_bar.html' %}
             <br/>
             {% for post in posts %}
                 {# Use Bulmba CSS #}
@@ -22,7 +22,7 @@
                         </figure>
                         <div class="media-content">
                             <div class="content">
-                                <p class="has-text-justified">
+                                <p class="has-text-justified mr-2">
                                     <strong>"{{ post.title }}"</strong> by
                                     <strong>{{ post.user.name }}</strong> in
                                     <strong>{{ post.group.name }}</strong> at
@@ -44,6 +44,7 @@
                             </nav>
                         </div>
                     </a>
+                <em class="is-ghost">⬆{{ post.score() }}</em>
                 </article>
             {% endfor %}
         </div>

@@ -5,6 +5,23 @@
             <input class="input" type="text" name="q" placeholder="Search"
                    value="{{ request.args.get('q', '') }}">
         </div>
+       {# drop down box for sorting #}
+        <div class="control">
+            <div class="select is-fullwidth">
+                <select name="sort">
+                    <option value="newest" {{ request.args.get('sort', '') == 'newest' and 'selected' }}>
+                        Newest
+                    </option>
+                    <option value="oldest" {{ request.args.get('sort', '') == 'oldest' and 'selected' }}>
+                        Oldest
+                    </option>
+                    <option value="votes" {{ request.args.get('sort', '') == 'votes' and 'selected' }}>
+                        Votes
+                    </option>
+                </select>
+            </div>
+        </div>
+
         <div class="control">
             <button class="button is-info">
                 <span class="icon">
