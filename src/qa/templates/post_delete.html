@@ -20,9 +20,12 @@
                         <div class="field">
                             <div class="control">
                                 <button class="button is-danger">Yes, Delete</button>
-                                <a href="{{ url_for('main.post', post_id=post.id) }}" class="button is-primary">No, Cancel</a>
+                                <a href="{{ url_for('main.post', post_id=post.top().id) }}" class="button is-primary">No, Cancel</a>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </article>
         </div>
     </div>
 {% endblock %}
