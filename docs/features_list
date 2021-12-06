@@ -1,0 +1,75 @@
+# Feature List
+
+## Base Features
+1. Create a Post
+- This feature allows users to post anything 
+(questions, written text, images, etc) as well 
+as be able to see posts that have been made public 
+by other users to everyone else on the platform 
+and posts by other users within their group
+2. Edit a Post
+- This feature allows users to post anything 
+(questions, written text, images, etc) as well 
+as be able to see posts that have been made 
+public by other users to everyone else on the 
+platform and posts by other users within their group
+3. Delete a Post
+- This is for a user to delete a post for reasons such 
+as what they have posted has already been posted or 
+if they think that what they posted is inappropriate 
+or irrelevant
+4. List Posts
+- This allows the user to see a timeline of questions, 
+so that he/she can learn more to be able to solve their 
+own problems from the different things that other users 
+have already posted
+5. Post Replies
+- A user can respond to posts by other people as well 
+as be able to see and reply to other users’ responses 
+to the things that they post
+6. Post Detail View
+- This should allow a user to find out more information 
+on a post that interests them so that they can view 
+more details about the question being asked and 
+answers to that question
+7. Register a User
+- The most important feature is for a person to be able 
+to register themselves in order to actually use and 
+navigate through our Q/A platform and to access our 
+product services
+- the following information must be provided for registration:
+  - valid email address
+  - valid phone number
+  - name
+  - password of at least 8 characters, one capital letter, and
+one special character
+8. User Sign-in
+- After successfully registering on the website, a 
+user will have access to all the base and additional features, 
+and should also be able to customize their online experience
+
+## Additional Features
+9. Upvotes/Downvotes for a Post
+- The purpose of this feature is to give an upvote 
+or a downvote (something like a thumbs up or thumbs down)
+for things that a user will  find to be either helpful 
+or unhelpful, or to show whether they agree or disagree 
+with something that another user posted
+10. Sort Posts
+- This function is critical as it will help a user to 
+filter out posts that don’t apply to them and what 
+they are doing on our Q/A platform, and also allows 
+them to be able to search for posts that will help 
+you answer their own questions for in the most 
+effective way possible
+11. Upload Image to Post
+- The purpose of this feature is to allow a user to 
+upload an image as a post along with written text; 
+this will allow a user to upload an image either 
+from the Internet or from their computer
+12. Search Posts
+- The purpose of this is to allow for a user to 
+search for content and resources in the quickest 
+and easiest way possible; this will work such 
+that when a user types what they are looking for, 
+a dropdown menu will appear with a list of options
