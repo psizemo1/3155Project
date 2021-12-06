@@ -1,0 +1,79 @@
+# User Stories
+
+## _Base Features_
+
+### 1. Create A Post
+- As a user, I want to be able to post questions along with being able to see questions posted by other people in my group as well as organization
+- Acceptance Criteria:
+   -  When I am a logged in user and I click on the ‘Posts’ button in the navigation bar, I should be able to create a new post with a title, a group, an image upload, and a description
+
+### 2. Edit a Post
+- As I user, I want to be able to edit posts that I have already created so that I
+can modify the post's current text, add new text, or remove existing text 
+- Acceptance Criteria:
+  - When I am a logged in user and I click on the ‘Edit’ button on the Post Detail page, I should be able to make changes to the title, group, image, and description of that post
+
+### 3. Delete a Post
+- As a user, I need the ability to delete a post I've made if the question asked is redundant or inappropriate.
+- Acceptance Criteria:
+  - When I am a logged in user and I click on the ‘Delete’ button on the Post Detail page, I should be able to delete that post from the application
+
+### 4. List Posts
+- As a user, I need to see a timeline of questions so I can see if I can learn more about solving my own problems from others.
+- Acceptance Criteria:
+  - If the user clicks on the ‘Posts’ button in the navigation bar, then they will be able to see a list of the most recent posts
+
+### 5. Post Replies
+- As a user, I want to be able to respond to posts by other people as well as be able to see and reply to  their responses to the things I post
+- Acceptance Criteria:
+  - If a user is on the ‘Post Detail’ page and they submit a reply to that post, then that reply will be visible underneath that post
+
+### 6. Post Detail View
+- As a user, I want to click on a post that interests me so I can view more details about the question being asked and answers to that question
+- Acceptance Criteria:
+  - If a user is on a post feed, when they click on a post, it will show them the details and the replies to that post
+  
+### 7. Register a User
+- As a user, I want to register an account so that I can access the product services
+Acceptance Criteria:
+  - If a user enters a valid email address, then that email is saved to the user's account
+  - If a user eneters a valid phone number, then that phone number is saved to the user's account
+  - If a usr enters a name, then that name is saved to the user's account and will be displayed in many of the application's views
+  - If a user provides a password that meets the password requirements, then that password is saved to the user's account and
+  will be used for authentication during log-in
+  - If the user clicks the "Sign Up" button, then the user information is saved and the user is redirected to the log-in page
+  
+### 8. User Sign-in
+- As a user, I need to be able to log-in to an account so I can access saved data and customize my online experience
+- Acceptance Criteria:
+  - If a user enters a valid email address and the password associated with that email, then the user will be given
+  access to that account's posts and information, as well as the ability to interact with other user's posts
+  - If a user enters an invalid email address or an incorrect password, then the user will not be
+  able to create new posts, upvote/downvote, or change account settings
+
+## _Additional Features_
+
+### 9. Upvotes/Downvotes For A Post:
+- As a user, I should be able to upvote/downvote any posts that I found helpful/unhelpful or agree/disagree with
+- Acceptance Criteria:
+  - If a user clicks upvote, then an upvote will become visible on the post
+  - If a user clicks downvote, then a downvote will become visible on the post
+  - If a user clicks upvote after already giving an upvote, then the upvote will be removed from the post
+  - If a user clicks downvote after already giving a downvote, then the downvote will be removed from the post
+
+### 10. Sort Posts
+- As a user, I need to be able to sort posts in order to filter out posts that don't apply to me and find posts that can help me answer my own questions.
+- Acceptance Criteria:
+  - If a user clicks on the "sort by newest", then posts will be shown in order from newest to oldest
+  - If a user clicks on the "sort by oldest", then posts will be shown in order from oldest to newest
+  - If a user clicks on the "sort by votes", then posts will be shown in order from the most votes to the least votes
+  
+### 11. Upload Image to Post
+- As a user, I want to be able to upload an image from my computer or from the Internet as a post along with written posts
+- Acceptance Criteria:
+  - If a user uploads an image to a post, then it becomes visible on the post
+  
+### 12. Search Posts
+- As a user, I would like to search for content and resources on the forum quickly and easily
+- Acceptance Criteria:
+  - If a user enters a string in the search box, then a list of posts will be shown that contain that string in the title of the post

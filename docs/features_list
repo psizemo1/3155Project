@@ -1,6 +1,6 @@
 # Feature List
 
-## Base Features
+## _Base Features_
 1. Create a Post
 - This feature allows users to post anything 
 (questions, written text, images, etc) as well 
@@ -48,7 +48,7 @@ one special character
 user will have access to all the base and additional features, 
 and should also be able to customize their online experience
 
-## Additional Features
+## _Additional Features_
 9. Upvotes/Downvotes for a Post
 - The purpose of this feature is to give an upvote 
 or a downvote (something like a thumbs up or thumbs down)
