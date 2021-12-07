@@ -1,7 +1,17 @@
+from flask import url_for
 from flask_login import UserMixin
+from sqlalchemy.orm import dynamic
 
 from . import db
 
+DEFAULT_USER_PICTURES = [
+    "https://3155project.s3.amazonaws.com/profile-1.png",
+    "https://3155project.s3.amazonaws.com/profile-2.png",
+    "https://3155project.s3.amazonaws.com/profile-3.png",
+    "https://3155project.s3.amazonaws.com/profile-4.png",
+    "https://3155project.s3.amazonaws.com/profile-5.png",
+    "https://3155project.s3.amazonaws.com/profile-6.png",
+]
 
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -101,6 +111,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     phone = db.Column(db.String(10))
     password = db.Column(db.String(100))
+    picture_id = db.Column(db.Integer, db.ForeignKey('user_image.id'), nullable=True)
+    picture = db.relationship('UserImage', backref=db.backref('users', lazy=True))
     created_at = db.Column(db.DateTime, default=db.func.now())
 
     def __init__(self, name, email, phone, password):
@@ -123,3 +135,24 @@ class User(UserMixin, db.Model):
 
     def downvoted(self, post):
         return Vote.query.filter_by(user_id=self.id, post_id=post.id, is_upvote=False).first() is not None
+
+    def picture_url(self):
+        if self.picture_id:
+            return url_for("main.user_image", image_id=self.picture_id)
+        else:
+            return DEFAULT_USER_PICTURES[self.id % len(DEFAULT_USER_PICTURES)]
+
+
+class UserImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.LargeBinary)
+    created_at = db.Column(db.DateTime, default=db.func.now())
+
+    def __init__(self, image):
+        self.image = image
+
+    def __str__(self):
+        return f'UserImage {self.id}'
+
+    def __repr__(self):
+        return f'<UserImage {self.id}>'
