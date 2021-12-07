@@ -135,7 +135,7 @@ def vote(post_id):
     if post is None:
         return 'Not found', 404
     if current_user.is_anonymous:
-        return 'Forbidden', 403
+        return redirect(url_for('auth.login'))
     if 'action' not in request.form:
         return 'Bad request', 400
     old_vote = Vote.query.filter(Vote.user == current_user, Vote.post == post).first()

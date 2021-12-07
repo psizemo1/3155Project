@@ -36,7 +36,7 @@
                             <div class="level-left">
                                 <div class="level-item">
                                     <form action="{{ url_for('main.vote', post_id=post.id) }}" method="POST">
-                                        {% if current_user.upvoted(post) %}
+                                        {% if not current_user.is_anonymous and current_user.upvoted(post) %}
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit" class="button is-small is-light">
                                         {% else %}
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="level-item">
                                     <form action="{{ url_for('main.vote', post_id=post.id) }}" method="POST">
-                                        {% if current_user.downvoted(post) %}
+                                        {% if not current_user.is_anonymous and current_user.downvoted(post) %}
                                             <input type="hidden" name="action" value="remove">
                                             <button type="submit" class="button is-small is-light">
                                         {% else %}
