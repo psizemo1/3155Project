@@ -4,12 +4,16 @@
     {% include 'components/messages.html' %}
     <h1 class="title">
         {% if current_user.is_authenticated %}
-              Hi, {{ current_user.name }}
+              Good to see you, {{ current_user.name }}!
         {% else %}
-              Hi, please register or sign in
+              Welcome to Ask&Answer!
         {% endif %}
     </h1>
     <h2 class="subtitle">
-        Welcome to the Q&A forum
+        {% if current_user.is_authenticated %}
+            Navigate to the Posts page to get started.
+        {% else %}
+            Please login or sign up to get started.
+        {% endif %}
     </h2>
 {% endblock %}
