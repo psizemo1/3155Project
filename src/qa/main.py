@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 
 from . import db
-from .models import Post, Group, Image, Vote
+from .models import Post, Group, Image, Vote, UserImage
 
 main = Blueprint('main', __name__)
 
@@ -89,9 +89,10 @@ def post_delete(post_id):
         return render_template('403.html'), 403
     if request.method == 'POST':
         db.session.delete(post)
+        post_parent = post.parent
         db.session.commit()
-        if post.parent:
-            return redirect(url_for('main.post', post_id=post.parent.id))
+        if post_parent:
+            return redirect(url_for('main.post', post_id=post_parent.id))
         return redirect(url_for('main.posts'))
     return render_template('post_delete.html', post=post)
 
@@ -135,7 +136,7 @@ def vote(post_id):
     if post is None:
         return 'Not found', 404
     if current_user.is_anonymous:
-        return 'Forbidden', 403
+        return redirect(url_for('auth.login'))
     if 'action' not in request.form:
         return 'Bad request', 400
     old_vote = Vote.query.filter(Vote.user == current_user, Vote.post == post).first()
@@ -156,5 +157,14 @@ def vote(post_id):
         db.session.commit()
     url = url_for('main.post', post_id=post.top().id) + f'#post-{post.id}'
     return redirect(url)
+
+
+@main.route('/user/images/<image_id>.jpg')
+def user_image(image_id):
+    image = UserImage.query.get(image_id)
+    if image is None:
+        return render_template('404.html'), 404
+    # Set content type to image/jpeg
+    return image.image, 200, {'Content-Type': 'image/jpeg'}
 
 

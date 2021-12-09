@@ -21,7 +21,7 @@
                     <a href="/posts/{{ post.id }}">
                         <figure class="media-left">
                             <p class="image is-32x32">
-                                <img src="https://bulma.io/images/placeholders/32x32.png" alt="User icon">
+                                <img src="{{ post.user.picture_url() }}" alt="User icon"/>
                             </p>
                         </figure>
                         <div class="media-content">
@@ -39,16 +39,12 @@
                                         <span class="icon is-small"><i class="fa fa-reply"></i></span>
                                     </a>
                                     <a class="level-item">
-                                        <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-                                    </a>
-                                    <a class="level-item">
-                                        <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                                        <span class="icon is-small"><i class="fa fa-heart"></i>{{ post.score() }}</span>
                                     </a>
                                 </div>
                             </nav>
                         </div>
                     </a>
-                <em class="is-ghost">⬆{{ post.score() }}</em>
                 </article>
             {% endfor %}
         </div>
